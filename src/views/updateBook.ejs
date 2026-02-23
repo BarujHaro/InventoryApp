@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+  <%- include('partials/header') %>
+    <h1><%= title %></h1>
+    <a href="/<%=book.id%>">Return</a>
+
+  <form action="/<%= book.id %>/update" method="POST">
+    <label for="title">Title: </label>
+    <input type="text" name="title" id="title" value="<%= book.title %>" required>
+    <label for="author">Author: </label>
+    <input type="text" name="author" id="author" value="<%= book.author %>" required>
+    <label for="year">Year: </label>
+    <input type="number" name="year" id="year" value="<%= book.year %>" required>
+    <label for="isbn">ISBN: </label>
+    <input type="text" name="isbn" id="isbn" value="<%= book.isbn || '' %>">
+    <label for="category_id">Category:</label>
+    <select name="category_id" id="category_id" required>
+        <option value="">Select category</option>
+        <% if (categories && categories.length > 0) { %>
+            <% categories.forEach(category => { %>
+                <option value="<%= category.id %>"
+                <%= category.id === book.category_id ? 'selected' : '' %>>
+                <%= category.name %>
+                </option>
+            <% }); %>
+      <% } %>
+    </select>
+
+
+    <label for="description">Description: </label>
+    <textarea id="description" name="description" rows="4" cols="50"><%= book.description || '' %></textarea>
+    <button type="submit">Submit</button>
+  </form>
+
+    
+</body>
+</html>

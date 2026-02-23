@@ -1,0 +1,51 @@
+npm init -y
+npm install express ejs express-validator pg dotenv
+npm install --save-dev nodemon
+
+
+psql -U postgres
+
+CREATE USER user WITH PASSWORD 'password';
+
+ALTER USER user CREATEDB;
+
+ALTER USER user CREATEROLE;
+
+CREATE DATABASE db OWNER user;
+
+GRANT ALL PRIVILEGES ON DATABASE db TO user;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO user;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO user;
+
+psql -U user -d db -h localhost
+
+//CREATE DATABASE db;
+
+CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE items (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    author VARCHAR(200) NOT NULL,
+    year INT,
+    isbn VARCHAR(13) UNIQUE,
+    description TEXT,
+    category_id INTEGER REFERENCES categories(id) ON DELETE RESTRICT
+);
+
+CREATE INDEX idx_items_category ON items(category_id);
+CREATE INDEX idx_items_author ON items(author);
+
+ALTER TABLE categories
+ADD COLUMN is_system BOOLEAN NOT NULL DEFAULT FALSE;
+
+ALTER TABLE items
+ADD COLUMN is_system BOOLEAN NOT NULL DEFAULT FALSE;
+
+node seed.js
+
+\d categories
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+</head>
+<body>
+<%- include('partials/header') %> 
+<h1><%= title %></h1>
+
+<form action="/search" method="GET">
+  <input
+    type="text"
+    name="q"
+    placeholder="Search by title or author"
+    value="<%= searchQuery %>"
+  >
+  <button type="submit">Search</button>
+</form>
+
+<p><%= resultsCount %> result(s) found</p>
+
+<ul>
+  <% if (items.length > 0) { %>
+    <% items.forEach(item => { %>
+      <li>
+        <strong><%= item.title %></strong><br>
+        Author: <%= item.author %><br>
+        Category: <%= item.category_name || 'Uncategorized' %>
+      </li>
+      <hr>
+    <% }) %>
+  <% } else { %>
+    <li>No results found</li>
+  <% } %>
+</ul>
+
+</body>
+</html>

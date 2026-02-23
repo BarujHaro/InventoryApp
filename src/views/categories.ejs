@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+</head>
+<body>
+<%- include('partials/header') %>
+  <h1><%= title %></h1>
+<a href="/category/create">Add Category</a>
+  <ul>
+    <% categories.forEach(category => { %>
+      <li>
+        <strong><%= category.name %></strong><br>
+        <a href="/category/edit/<%= category.id %>">Edit</a>
+        <form action="/category/<%= category.id %>/delete" method="POST" style="display: inline;">
+            <button type="submit" onclick="return confirm('¿Delete this category?')">
+              Delete
+            </button>
+        </form>
+      </li>
+      <hr>
+    <% }) %>
+  </ul>
+
+</body>
+</html>

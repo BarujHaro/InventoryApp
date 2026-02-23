@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %>: <%= item.title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <div class="container">
+ 
+    <h1><%= item.title %></h1>
+    
+    <div class="book-detail">
+      <% if (item) { %>
+        <div class="book-info">
+          <p><strong>Title:</strong> <%= item.title %></p>
+          <p><strong>Author:</strong> <%= item.author %></p>
+          <p><strong>Year:</strong> <%= item.year || 'No year' %></p>
+          <p><strong>ISBN:</strong> <%= item.isbn || 'No available' %></p>
+          <p><strong>Category:</strong> <%= item.category_name || 'No category' %></p>
+          <p><strong>Description:</strong> <%= item.description || 'No description' %></p>
+        </div>
+        
+
+
+        <div class="actions">
+          <a href="/<%= item.id %>/update" class="btn btn-warning">Edit</a>
+          <form action="/<%= item.id %>/delete" method="POST" style="display: inline;">
+            <button type="submit" onclick="return confirm('¿Delete this book?')">
+              Delete
+            </button>
+          </form>
+
+
+
+
+        </div>
+      <% } else { %>
+        <p>Book not found</p>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

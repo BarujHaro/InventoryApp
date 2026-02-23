@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+</head>
+<body>
+<%- include('partials/header') %>
+  <h1><%= title %></h1>
+    <form action="/search" method="GET">
+      <input type="text" name="q" id="search" placeholder="Search by name..." >
+      <button type="submit">Search</button>
+    </form>
+
+
+<a href="/bookCreate">Add book</a>
+
+  <ul>
+    <% items.forEach(item => { %>
+      <li>
+        <strong><%= item.title %></strong><br>
+        <%= item.author %><br>
+        <%= item.category_name %>
+        <a href="/<%= item.id %>">See book</a>
+      </li>
+      <hr>
+    <% }) %>
+  </ul>
+
+</body>
+</html>

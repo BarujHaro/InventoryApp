@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<h1><%= title %></h1>
+
+<% if (errors && errors.length > 0) { %>
+    <div class="error-list">
+        <h3>Please fix the following errors:</h3>
+        <ul>
+            <% errors.forEach(error => { %>
+                <li class="error-item">
+                    <strong><%= error.path %>:</strong> <%= error.msg %>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+<% } %>
+
+
+<form action="<%= formAction %>" method="POST">
+  <label>
+    Category name:
+    <input
+      type="text"
+      name="name"
+      value="<%= category ? category.name : '' %>"
+      required
+    >
+  </label>
+
+ 
+
+  <button type="submit">
+    <%= category ? 'Update Category' : 'Create Category' %>
+  </button>
+</form>
+
+<a href="/category">Back</a>
+
+</body>
+</html>
