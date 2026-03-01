@@ -2,38 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <%- include('partials/header') %> 
-<h1><%= title %></h1>
+<main class="container">
+  <h1><%= title %></h1>
 
-<form action="/search" method="GET">
-  <input
-    type="text"
-    name="q"
-    placeholder="Search by title or author"
-    value="<%= searchQuery %>"
-  >
-  <button type="submit">Search</button>
-</form>
+  <form action="/search" method="GET" class="search-form">
+    <input
+      type="text"
+      name="q"
+      placeholder="Search by name"
+      value="<%= searchQuery %>"
+    >
+    <button type="submit">Search</button>
+  </form>
 
-<p><%= resultsCount %> result(s) found</p>
+  <div class="results"><p><%= resultsCount %> result(s) found</p></div>
+  
+  <ul class="book-list">
+    <% if (items.length > 0) { %>
+      <% items.forEach(item => { %>
+        <li class="book-card">
+          <strong class="book-title"><%= item.title %></strong>
+          <span class="book-author"><%= item.author %></span>
+          <span class="book-category"><%= item.category_name || 'Uncategorized' %></span>
+          <div><a href="/book/<%= item.id %>"  class="view-icon"></a></div>
+        </li>
+        <hr>
+      <% }) %>
+    <% } else { %>
+      <li>No results found</li>
+    <% } %>
+  </ul>
 
-<ul>
-  <% if (items.length > 0) { %>
-    <% items.forEach(item => { %>
-      <li>
-        <strong><%= item.title %></strong><br>
-        Author: <%= item.author %><br>
-        Category: <%= item.category_name || 'Uncategorized' %>
-      </li>
-      <hr>
-    <% }) %>
-  <% } else { %>
-    <li>No results found</li>
-  <% } %>
-</ul>
+</main>
+
 
 </body>
 </html>

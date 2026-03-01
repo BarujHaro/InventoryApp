@@ -19,7 +19,10 @@ const Category = {
 
     update: async (id, name) => {
         const result = await db.query(
-            `UPDATE categories SET name = $1 WHERE id = $2 RETURNING *`,
+            `UPDATE categories 
+            SET name = $1 
+            WHERE id = $2 AND is_system = false
+            RETURNING *`,
             [name, id]
         );
         return result.rows[0];
@@ -27,7 +30,10 @@ const Category = {
 
     delete: async (id) => {
         try{
-            const result = await db.query(`DELETE FROM categories WHERE id = $1 RETURNING *`, [id]);
+            const result = await db.query(
+                `DELETE FROM categories 
+                WHERE id = $1 AND is_system = false
+                RETURNING *`, [id]);
             return result.rows[0];
         }catch(error){throw error;}
     },

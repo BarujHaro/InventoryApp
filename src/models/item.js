@@ -70,7 +70,7 @@ const Item = {
             `
             UPDATE items SET
             title = $1, author = $2, year = $3, isbn = $4, description = $5, category_id = $6
-            WHERE id = $7
+            WHERE id = $7 AND is_system = false
             RETURNING *
             `,
             [title, author, year, isbn, description, category_id, id]
@@ -79,7 +79,7 @@ const Item = {
     },
 
     delete: async (id) => {
-        const result = await db.query('DELETE FROM items WHERE id = $1 RETURNING *', [id]);
+        const result = await db.query('DELETE FROM items WHERE id = $1 AND is_system = false RETURNING *', [id]);
         return result.rows[0];
     },
  

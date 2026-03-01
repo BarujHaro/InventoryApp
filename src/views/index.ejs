@@ -2,30 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <%- include('partials/header') %>
+<main class="container">
   <h1><%= title %></h1>
-    <form action="/search" method="GET">
-      <input type="text" name="q" id="search" placeholder="Search by name..." >
+    <form action="/search" method="GET" class="search-form">
+      <input type="text" name="q" id="search" placeholder="Search by name" >
       <button type="submit">Search</button>
     </form>
 
 
-<a href="/bookCreate">Add book</a>
+ 
+<div><a href="/bookCreate"  class="plus-icon"></a></div>
 
-  <ul>
+  <ul class="book-list">
     <% items.forEach(item => { %>
-      <li>
-        <strong><%= item.title %></strong><br>
-        <%= item.author %><br>
-        <%= item.category_name %>
-        <a href="/<%= item.id %>">See book</a>
+      <li class="book-card">
+        <strong  class="book-title"><%= item.title %></strong> 
+        <span class="book-author"><%= item.author %></span>
+        <span class="book-category"><%= item.category_name %></span>
+        <div><a href="/book/<%= item.id %>"  class="view-icon"></a></div>
       </li>
       <hr>
     <% }) %>
   </ul>
-
+</main>
 </body>
 </html>

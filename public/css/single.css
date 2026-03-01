@@ -1,0 +1,108 @@
+.book-detail {
+    margin-top: 5rem;
+  width: 100%;
+  max-width: 25rem;
+  background-color: var(--light);
+  border: 1px solid var(--bar);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.book-info p {
+  margin: 0;
+  color: var(--darker);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.book-info strong {
+  color: var(--dark);
+}
+
+
+.book-info p:last-child {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--bar);
+}
+
+
+.actions {
+    
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.actions a,
+.actions button {
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* EDIT */
+.actions a {
+  background-color: var(--bar);
+  color: var(--darker);
+}
+
+.actions a:hover {
+  background-color: var(--dark);
+  color: var(--bg);
+  transform: scale(1.08);
+  transition: all 0.3s ease;
+}
+
+/* DELETE */
+.actions button {
+  background-color: var(--danger);
+  color: var(--danger-lighter);
+}
+
+.actions button:hover {
+  background-color: var(--danger-light);
+  color: var(--danger);
+  transform: scale(1.08);
+  transition: all 0.3s ease;
+}
+
+/* CLICK FEEDBACK */
+.actions a:active,
+.actions button:active {
+  transform: scale(0.97);
+}
+
+@media screen and (min-width: 1024px){
+  .book-detail {
+    margin-top: 6rem;
+    max-width: 32rem;
+  }
+
+  .book-info p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+  }
+
+  .actions a,
+  .actions button {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}

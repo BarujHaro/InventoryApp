@@ -1,0 +1,203 @@
+.header {
+  background: var(--bar);
+  padding: 15px;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  gap: 10px;
+
+}
+
+.nav a {
+  color: var(--darker);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nav a:hover {
+  text-decoration: none;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+.plus-icon, .view-icon, .delete-icon{
+  font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.view-icon:hover, .delete-icon:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.plus-icon:hover {
+    transform: scale(1.15);
+    transition: all 0.3s ease;
+}
+
+.plus-icon:hover::before, .view-icon:hover::before, .delete-icon:hover::before {
+    filter: brightness(0) saturate(100%) invert(13%) sepia(11%) saturate(2592%) hue-rotate(317deg) brightness(98%) contrast(87%);
+}
+
+.plus-icon::before, .view-icon::before, .delete-icon::before{
+    content: "";
+    display: inline-block;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(4%) saturate(2653%) hue-rotate(327deg) brightness(98%) contrast(78%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.delete-icon:hover::before {
+    filter: brightness(0) saturate(100%) invert(94%) sepia(59%) saturate(896%) hue-rotate(286deg) brightness(87%) contrast(106%);
+}
+
+.delete-icon::before{
+    content: "";
+    display: inline-block;
+    filter: brightness(0) saturate(100%) invert(33%) sepia(57%) saturate(851%) hue-rotate(318deg) brightness(95%) contrast(79%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.plus-icon::before {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-image: url('/img/plus.png');
+}
+
+.view-icon::before {
+    width: 28px;
+    height: 28px;
+    background-image: url('/img/view.png');
+}
+.delete-icon{
+    background: none;
+  border: none;
+  cursor: pointer;
+}
+.delete-icon::before{
+  content: "";
+  display: inline-block;
+    background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+    width: 28px;
+    height: 28px;
+    background-image: url('/img/borrar.png');
+}
+
+.search-form {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-form input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 2px solid var(--bar);
+  background-color: var(--bg);
+  color: var(--darker);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-form input::placeholder {
+  color: var(--dark);
+}
+
+.search-form input:focus {
+  border-color: var(--darker);
+  box-shadow: 0 0 0 2px rgba(71, 40, 37, 0.2);
+}
+
+.search-form button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--bar);
+  color: var(--darker);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.search-form button:hover {
+  background-color: var(--dark);
+  color: var(--bg);
+}
+
+.search-form button:active {
+  transform: scale(0.97);
+}
+ 
+.error-container{
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
+.error-container h1{
+  font-size: 3rem;
+  color: var(--darker);
+}
+.error-container p{
+  font-size: 1.5rem;
+  color: var(--darker);
+}
+
+@media screen and (min-width: 1024px){
+  .header {
+    height: 2rem;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8rem;
+    text-align: center;
+  }
+
+  .nav a {
+    font-size: 1.5rem;
+  }
+  
+.search-form {
+  height: 3rem;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-form input {
+  padding: 10px 16px;
+  font-size: 1.2rem;
+}
+
+.search-form button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+
+}

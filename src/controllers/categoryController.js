@@ -25,7 +25,7 @@ exports.categoryCreateGet = async (req, res) => {
       title: 'Create new category',
       category: null,
       formAction: '/category/create',
-      error: null,
+      errors: null,
     });
   }catch(error){
     console.error(error);
@@ -34,18 +34,23 @@ exports.categoryCreateGet = async (req, res) => {
 };
 
 exports.categoryCreatePost = async (req, res) => {
-    const {name} = req.body;
-    const errors = validateCategory(name);
+  const errors = validationResult(req);
 
   try{
-
-
+    
     if(!errors.isEmpty()){
-      await Category.create(name);
-      //res.redirect('categories');
-      res.redirect('/category');
+      
+      return res.status(400).render('categoryForm', {
+        title: 'Create new category',
+        category: req.body,  
+        formAction: '/category/create',
+        errors: errors.array(),  
+      });
     }
 
+    const { name } = req.body;
+    await Category.create(name);
+    res.redirect('/category');
 
   }catch(error){
     console.error(error);
@@ -53,7 +58,7 @@ exports.categoryCreatePost = async (req, res) => {
       title: 'Create new category',
       category: null,
       formAction: '/category/create',
-      error: errors,
+      errors: errors,
     });
   }
 };
@@ -66,7 +71,7 @@ exports.CategoryUpdateGet = async (req, res) => {
       title: 'Edit Category',
       category: categorySelected,
       formAction: `/category/edit/${categoryId}`,
-      error: null,
+      errors: null,
     });
   }catch(error){
     console.error(error);
@@ -77,23 +82,30 @@ exports.CategoryUpdateGet = async (req, res) => {
 };
 
 exports.CategoryUpdatePost = async (req, res) => {
-  const {name} = req.body;
   const categoryId = req.params.id;
-  const errors = validateCategory(name);
+  const errors = validationResult(req);
   const categorySelected =  Category.findById(categoryId);
   try{
+    const {name} = req.body;
     if(!errors.isEmpty()){
+      res.status(500).render('categoryForm', {
+        title: 'Edit Category',
+        category: categorySelected,
+        formAction: `/category/edit/${categoryId}`,
+        errors: errors,
+      });
+    }
 
       await Category.update(categoryId, name);
       res.redirect('/category');
-    }
+
   }catch(error){
     console.error(error);
     res.status(500).render('categoryForm', {
       title: 'Edit Category',
       category: categorySelected,
       formAction: `/category/edit/${categoryId}`,
-      error: errors,
+      errors: errors,
     });
   }
 };

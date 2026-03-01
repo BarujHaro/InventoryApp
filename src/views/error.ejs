@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
-    <%- include('partials/header') %>
-    <h1>Error</h1>
-    <p><%= message %></p>
+<body class="no-scroll">
+
+<%- include('partials/header') %>
+
+<main class="container">
+  <%- include('partials/error', {
+    status,
+    message,
+    details
+  }) %>
+</main>
 
 </body>
 </html>

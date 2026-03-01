@@ -4,18 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %>: <%= item.title %></title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
+<body class="no-scroll">
   <%- include('partials/header') %>
   <div class="container">
- 
-    <h1><%= item.title %></h1>
+
     
     <div class="book-detail">
       <% if (item) { %>
-        <div class="book-info">
-          <p><strong>Title:</strong> <%= item.title %></p>
+        <div class="book-info"> 
+          <h1><%= item.title %></h1>
           <p><strong>Author:</strong> <%= item.author %></p>
           <p><strong>Year:</strong> <%= item.year || 'No year' %></p>
           <p><strong>ISBN:</strong> <%= item.isbn || 'No available' %></p>
@@ -26,8 +25,8 @@
 
 
         <div class="actions">
-          <a href="/<%= item.id %>/update" class="btn btn-warning">Edit</a>
-          <form action="/<%= item.id %>/delete" method="POST" style="display: inline;">
+          <a href="/update/<%= item.id %>" class="btn btn-warning">Edit</a>
+          <form action="/delete/<%= item.id %>" method="POST" style="display: inline;">
             <button type="submit" onclick="return confirm('¿Delete this book?')">
               Delete
             </button>

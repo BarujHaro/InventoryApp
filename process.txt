@@ -49,3 +49,24 @@ node seed.js
 
 \d categories
 
+
+USE OF MIDDLEWARE
+1. Items/books this use an array of middlewares 
+    exports.bookCreatePost = [
+    validateBook,           // Middleware 
+    async (req, res) => {   // Controller
+        // logic
+    }
+    ];
+
+2. Middleware divided by routes
+    // COntroller
+    exports.categoryCreatePost = async (req, res) => {
+    // lógica del controlador
+    };
+    // Routes
+    categoryRouter.post('/create', validateCategory, categoryController.categoryCreatePost);
+
+
+The array middlewares is cleaner and is easier to test
+In the same way, I put both as a way of learning the middleware methods

@@ -91,7 +91,7 @@ exports.bookCreatePost =  [
         category_id: bookData.category_id,
         description: bookData.description || '',
       });
-      res.redirect(`/${newBook.id}`);
+      res.redirect(`/book/${newBook.id}`);
     }catch(error){
       console.error('Error creating book:', error);
       res.status(500).render("bookCreate", {
@@ -136,7 +136,7 @@ exports.booksUpdatePost = [
     }
     const {title, author, year, isbn, category_id, description} = matchedData(req);
     await Item.update(req.params.id, {title, author, year, isbn, category_id, description});
-    res.redirect(`/${book.id}`);
+    res.redirect(`/book/${req.params.id}`);
   }
 ];
 
