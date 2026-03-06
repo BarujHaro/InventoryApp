@@ -20,13 +20,21 @@
   padding: 0;
   margin: 30px 0;
   display: grid;
-  gap: 14px;
+  gap: 2rem;
+}
+.books-grid{
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+}
+
+.category-grid{
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
 }
 
 .book-card {
   min-width: 14rem;
-  display: flex;
-  justify-content: space-between;
+
   align-items: center;
   background-color: var(--light);
   padding: 16px 18px;

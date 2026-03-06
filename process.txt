@@ -45,6 +45,16 @@ ADD COLUMN is_system BOOLEAN NOT NULL DEFAULT FALSE;
 ALTER TABLE items
 ADD COLUMN is_system BOOLEAN NOT NULL DEFAULT FALSE;
 
+-- Primero eliminar la restricción actual
+ALTER TABLE items DROP CONSTRAINT items_category_id_fkey;
+
+-- Crear nueva restricción con ON DELETE SET NULL
+ALTER TABLE items 
+ADD CONSTRAINT items_category_id_fkey 
+FOREIGN KEY (category_id) 
+REFERENCES categories(id) 
+ON DELETE SET NULL;
+
 node seed.js
 
 \d categories

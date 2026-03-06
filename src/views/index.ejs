@@ -21,13 +21,12 @@
 
   <ul class="book-list">
     <% items.forEach(item => { %>
-      <li class="book-card">
+      <li class="book-card books-grid">
         <strong  class="book-title"><%= item.title %></strong> 
         <span class="book-author"><%= item.author %></span>
-        <span class="book-category"><%= item.category_name %></span>
+        <span class="book-category"><%= item.category_name || '-' %></span>
         <div><a href="/book/<%= item.id %>"  class="view-icon"></a></div>
       </li>
-      <hr>
     <% }) %>
   </ul>
 </main>

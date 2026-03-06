@@ -17,8 +17,8 @@
 
   <ul  class="book-list">
     <% categories.forEach(category => { %>
-      <li class="book-card">
-        <strong class="book-title"><%= category.name %></strong><br>
+      <li class="book-card category-grid">
+        <strong class="book-title"><%= category.name %></strong>
         <div class="edit"><a href="/category/edit/<%= category.id %>">Edit</a></div>
         
         <form action="/category/<%= category.id %>/delete" method="POST" style="display: inline;">
@@ -26,7 +26,6 @@
             </button>
         </form>
       </li>
-      <hr>
     <% }) %>
   </ul>
 
