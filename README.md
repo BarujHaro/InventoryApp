@@ -13,7 +13,7 @@ Inventory management application built with Node.js and Express.
 - Node.js
 - Express
 - EJS
-- Psotgresql
+- Postgresql
 
 ## Getting Started
 1. Clone the repo
